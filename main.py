@@ -32,8 +32,11 @@ def redirect_url(url_curta):
         return redirect(url_longa)
     else:
         return "erro", 404
-
-with open("urls.json","r") as f:
-    urls = json.load(f)
+try:
+    with open("urls.json","r") as f:
+        urls = json.load(f)
+except:
+    with open("urls.json", "w") as f:
+            json.dump(urls,f)
 
 app.run(port=5000,host='localhost',debug=True)
